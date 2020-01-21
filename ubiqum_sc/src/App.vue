@@ -1,15 +1,22 @@
 <template>
   <div id="app">
+    <!-- <Home></Home> -->
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/courses">Courses</router-link>|
       <router-link to="/mentors">Mentors</router-link>|
-      <router-link to="/library">Library</router-link>
+      <router-link to="/students">Students</router-link>
     </div>
     <router-view />
   </div>
 </template>
 
+<script>
+import Home from "./components/Home.vue";
+export default {
+  components: { Home }
+};
+</script>
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

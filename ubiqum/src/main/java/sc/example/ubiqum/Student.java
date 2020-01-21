@@ -16,6 +16,7 @@ public class Student {
     private long id;
     private String firstName;
     private String lastName;
+    private String email;
     private Integer age;
 
     @OneToMany(mappedBy="student", fetch=FetchType.EAGER)
@@ -25,19 +26,30 @@ public class Student {
 
     public Student() { }
 
-    public Student(String first, String last, Integer age) {
+    public Student(String first, String last, String email, Integer age) {
         this.firstName = first;
         this.lastName = last;
+        this.email = email;
         this.age = age;
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Set<StudentCourseMentor> getStudentCourseMentorHashSet() {
         return studentCourseMentorHashSet;
     }
     public void addStudentCourseMentor(StudentCourseMentor studentCourseMentor){ this.studentCourseMentorHashSet.add(studentCourseMentor); }
-
 
 
     public void setAge(Integer age) {
@@ -65,6 +77,6 @@ public class Student {
     }
 
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " " + lastName + " " + email;
     }
 }

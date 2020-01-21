@@ -5,6 +5,7 @@ import Home from "../components/Home.vue";
 import Library from "../components/Library.vue";
 import Mentors from "../components/Mentors.vue";
 import Courses from "../components/Courses.vue";
+import Students from "../components/Students.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     path: "/library",
     name: "Library",
     component: Library
+  },
+  {
+    path: "/students",
+    name: "Students",
+    component: Students
   },
   {
     path: "/mentors",

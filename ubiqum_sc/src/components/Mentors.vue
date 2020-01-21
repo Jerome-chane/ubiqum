@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <img src="../assets/u.png" />
     <div v-if="mentors">
       <div v-for="(mentor, i) in mentors.mentors" :key="i">
         <h4>{{mentor.firstname}} {{mentor.lastname}}</h4>
