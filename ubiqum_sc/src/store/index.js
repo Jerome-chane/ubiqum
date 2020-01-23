@@ -37,7 +37,6 @@ export default new Vuex.Store({
         email: payload.email,
         age: payload.age
       };
-      console.log();
 
       fetch(`/api/addStudent`, {
         credentials: "include",
@@ -71,10 +70,9 @@ export default new Vuex.Store({
         firstName: payload.firstName,
         lastName: payload.lastName,
         email: payload.email,
-        age: payload.age,
-        id: payload.id
+        age: payload.age
       };
-      console.log();
+      console.log("delete", JSON.stringify(ourData));
 
       fetch(`/api/deleteStudent`, {
         credentials: "include",
@@ -90,11 +88,12 @@ export default new Vuex.Store({
           return newData.json();
         })
         .then(data => {
+          console.log(data);
+
           if (data.hasOwnProperty("error")) {
             console.log(" error: ", data);
             // commit("setUserAlreadyExist", true);
           } else {
-            // commit("setUserAlreadyExist", false);
             dispatch("get", "students");
           }
         })

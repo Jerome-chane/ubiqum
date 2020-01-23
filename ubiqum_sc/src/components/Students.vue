@@ -8,15 +8,19 @@
               <th>First Name</th>
               <th>Last Name</th>
               <th>Age</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
+              <th>Course</th>
             </tr>
             <tr v-for="(s, i) in students.student" :key="i">
-              <td>{{s.firstname}}</td>
-              <td>{{s.lastname}}</td>
+              <td>{{s.firstName}}</td>
+              <td>{{s.lastName}}</td>
               <td>{{s.age}}</td>
               <td>
-                <span @click="deleteStudent(s)">Remove</span>
+                <p v-for="(c,e) in s.course" :key="e">{{c.name}}</p>
               </td>
+              <!-- <td>
+                <span @click="deleteStudent(s)">Remove</span>
+              </td>-->
             </tr>
           </thead>
         </table>
@@ -87,8 +91,6 @@ export default {
   },
   methods: {
     deleteStudent(s) {
-      console.log(s);
-
       this.$store.dispatch("deleteStudent", s);
     },
     check(event) {

@@ -18,7 +18,7 @@ public class Mentor {
     private String speciality;
     private Integer age;
     private String photo;
-
+private String email;
 
 
     @OneToMany(mappedBy="mentor", fetch=FetchType.EAGER)
@@ -28,11 +28,12 @@ public class Mentor {
 
     public Mentor() { }
 
-    public Mentor(String first, String last, Integer age, String speciality) {
+    public Mentor(String first, String last, String email, Integer age, String speciality) {
         this.firstName = first;
         this.lastName = last;
         this.age = age;
         this.speciality = speciality;
+        this.email = email;
     }
 
     public void addPhoto(String link){
@@ -41,6 +42,14 @@ public class Mentor {
 
     public String getPhoto() {
         return photo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Course> getCourses() {

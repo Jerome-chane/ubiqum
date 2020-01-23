@@ -53,7 +53,7 @@ public class UbiqumController {
         dto.put("content", course.getContent());
         dto.put("duration", course.getDuration());
         dto.put("mentor", MentorsDTO(course.getMentor()));
-        dto.put("Students", course.getStudentCourseMentorHashSet().stream().map(s -> StudentsDTO2(s.getStudent())));
+        dto.put("Students", course.getStudentCourseMentorHashSet().stream().map(s -> StudentsCDTO(s.getStudent())));
         return dto;
     }
 
@@ -67,25 +67,24 @@ public class UbiqumController {
 
         return dto;
     }
-
-    private Map<String, Object> StudentsDTO2(Student student) {
+    private Map<String, Object> StudentsCDTO(Student student) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", student.getId());
-        dto.put("firstname", student.getFirstName());
-        dto.put("lastname", student.getLastName());
-        dto.put("email", student.getEmail());
+        dto.put("firstName", student.getFirstName());
+        dto.put("lastName", student.getLastName());
         dto.put("age", student.getAge());
+        dto.put("email", student.getEmail());
         return dto;
     }
 
     private Map<String, Object> StudentsDTO(Student student) {
         Map<String, Object> dto = new LinkedHashMap<String, Object>();
         dto.put("id", student.getId());
-        dto.put("firstname", student.getFirstName());
-        dto.put("lastname", student.getLastName());
+        dto.put("firstName", student.getFirstName());
+        dto.put("lastName", student.getLastName());
         dto.put("age", student.getAge());
-//        dto.put("course",student.getStudentCourseMentorHashSet().stream().map(a->a.getCourse()));
-
+        dto.put("email", student.getEmail());
+        dto.put("course",student.getStudentCourseMentorHashSet().stream().map(a->CourseDTO(a.getCourse())));
 
         return dto;
     }
@@ -100,24 +99,24 @@ public class UbiqumController {
 
 
 
-    @RequestMapping(value = "/api/deleteStudent/{id}", method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>> deleteStudent(@RequestParam Long id,@RequestBody Student student)  {
+    @RequestMapping(value = "/api/deleteStudent", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> deleteStudent(@RequestBody Student student) {
+        
 
-        System.out.println("id"+id);
-        Student s = studentRepository.findByEmail(student.getEmail());
-//        System.out.println(student.);
-        if ( s == null ) {
+        if ( studentRepository.findByEmail(student.getEmail()) == null) {
             return new ResponseEntity<>(makeMap("Error", "Not Found"), HttpStatus.CONFLICT);
         }
-        studentRepository.delete(s);
 
+        studentRepository.deleteById(student.getId());
         return new ResponseEntity<>(makeMap("Success", "Student Successfully Deleted"), HttpStatus.ACCEPTED);
     }
+
 
 
     @RequestMapping(value = "/api/addStudent", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> addStudent(@RequestBody Student student) {
         Student s = studentRepository.findByEmail(student.getEmail());
+        System.out.println(s);
         if (s != null) {
             System.out.println("Student found" + s);
             return new ResponseEntity<>(makeMap("error", "Student already exists"), HttpStatus.CONFLICT);
@@ -130,6 +129,30 @@ public class UbiqumController {
         }
         return new ResponseEntity<>(makeMap("success", "Name Added"), HttpStatus.CREATED);
     }
+
+
+
+
+//    @RequestMapping(value = "/api/addMentor", method = RequestMethod.POST)
+//    public ResponseEntity<Map<String, Object>> addMentor(@RequestBody Mentor mentor) {
+//        Mentor m = mentorRepository.findByEmail(mentor.getEmail());
+//        System.out.println(m);
+//        if (m != null) {
+//            System.out.println("Mentor found" + m);
+//            return new ResponseEntity<>(makeMap("error", "Student already exists"), HttpStatus.CONFLICT);
+//        }
+//
+//        if (m == null) {
+//            Student newStudent = new Student(mentor.getFirstName(), mentor.getLastName(), mentor.getEmail(), mentor.getAge());
+//            studentRepository.save(newStudent);
+//            System.out.println("Player saved: " + newStudent);
+//        }
+//        return new ResponseEntity<>(makeMap("success", "Name Added"), HttpStatus.CREATED);
+//    }
+//
+
+
+
     private Map<String, Object> makeMap(String key, Object value) {
         Map<String, Object> map = new HashMap<>();
         map.put(key, value);

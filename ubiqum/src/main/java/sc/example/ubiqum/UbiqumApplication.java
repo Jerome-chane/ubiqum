@@ -23,10 +23,10 @@ public CommandLineRunner initData(StudentRepository studentRepository, MentorRep
 	Student s5 = new Student("Marilyn", "Monroe", "MM.com",22);
 	studentRepository.save(s1);studentRepository.save(s2);studentRepository.save(s3);studentRepository.save(s4);studentRepository.save(s5);
 
-		Mentor m1 = new Mentor("Mr", "Bean", 54, "Java, Js");
-		Mentor m2 = new Mentor("Master", "San", 45, "HTML, CSS");
-		Mentor m3 = new Mentor("Mr", "Potatoe", 45, "Python, Vue");
-		Mentor m4 = new Mentor("Pika", "Chu", 45, "Bootstap, Mern");
+		Mentor m1 = new Mentor("Mr", "Bean", "Mr@bean.com",54, "Java, Js");
+		Mentor m2 = new Mentor("Master", "San","master.san.com", 45, "HTML, CSS");
+		Mentor m3 = new Mentor("Mr", "Potatoe","mt.potstoe@email.com", 45, "Python, Vue");
+		Mentor m4 = new Mentor("Pika", "Chu","pika.chu@poka.com", 45, "Bootstap, Mern");
 		m1.addPhoto("https://pbs.twimg.com/profile_images/537867024920113152/ENatnQMa.png");
 		m2.addPhoto("https://www.drupal.org/files/images/master_joda.png");
 		m3.addPhoto("https://pbs.twimg.com/profile_images/944655409528401920/rDWcUAlC_400x400.jpg");

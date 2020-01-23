@@ -40,15 +40,15 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Age</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
               </tr>
               <tr v-for="(s, i) in course.Students" :key="i">
-                <td>{{s.firstname}}</td>
-                <td>{{s.lastname}}</td>
+                <td>{{s.firstName}}</td>
+                <td>{{s.lastName}}</td>
                 <td>{{s.age}}</td>
-                <td>
+                <!-- <td>
                   <span @click="remove(s.id)">Remove</span>
-                </td>
+                </td>-->
               </tr>
             </thead>
           </table>
